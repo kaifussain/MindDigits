@@ -1,0 +1,14 @@
+#app{
+  display: grid;
+  place-content: center;
+
+}
+.flex{
+  display: flex;
+}
+.block{
+  display: block;
+}
+.no-break-line{
+  white-space: nowrap;
+}
