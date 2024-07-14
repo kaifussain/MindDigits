@@ -4,8 +4,8 @@ import './Mainbar.css'
 const Mainbar = () => {
   return (
     <div id="Mainbar">
-        Mainbar
-        </div>
+        
+    </div>
   )
 }
 

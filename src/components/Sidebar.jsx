@@ -20,6 +20,17 @@ const Sidebar = (props) => {
       <div style={style4inner} id="sidebarInnerDiv">
         
         <div className="flex">
+          <button>+</button>
+          <button>-</button>
+          <button>*</button>
+          <button>/</button>
+          <button>%</button>
+          <button>x<sup>2</sup></button>
+          <button>x<sup>3</sup></button>
+          <button><sup>2</sup>√</button>
+          <button><sup>3</sup>√</button>
+        </div>
+        <div className="flex">
           <button>E</button>
           <button>M</button>
           <button>H</button>
@@ -28,7 +39,7 @@ const Sidebar = (props) => {
           <button>Option</button>
           <button>Manual</button>
         </div>
-        <div className="flex no-break-line">
+        <div className="no-break-line flex">
           Dark Mode<input type="checkbox"></input>
         </div>
       </div>
