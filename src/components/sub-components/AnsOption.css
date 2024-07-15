@@ -1,0 +1,10 @@
+#AnsOption{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+}
+#AnsOption > *{
+    border:2px solid rgb(135, 135, 135);
+    padding:0.6rem 1rem;
+    text-align: center;
+}

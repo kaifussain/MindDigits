@@ -4,3 +4,13 @@
     width:50vw;
     height: 99vh;
 }
+#Mainbar_head{
+    /* border:1px solid pink; */
+    padding:4rem;
+    text-align: center;
+}
+#Mainbar_mid{
+    height: 74%;
+    display: grid;
+    place-items: center;
+}

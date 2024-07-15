@@ -4,7 +4,6 @@ import "./Sidebar.css";
 const Sidebar = (props) => {
   const [sideBarOpened, setSideBarOpened] = useState(false);
   const style = {
-    color: props.smallScreenMode ? "white" : "red",
     width: sideBarOpened ? "23vw" : "0",
     color: sideBarOpened ? "" : "transparent",
   };
@@ -36,11 +35,11 @@ const Sidebar = (props) => {
           <button>H</button>
         </div>
         <div className="flex">
-          <button>Option</button>
-          <button>Manual</button>
+          <button className={props.isAnsManual?'':'selected'} onClick={props.setIsAnsManualFalse}>Option</button>
+          <button className={props.isAnsManual?'selected':''} onClick={props.setIsAnsManualTrue}>Manual</button>
         </div>
         <div className="no-break-line flex">
-          Dark Mode<input type="checkbox"></input>
+          <button>Dark Mode</button>
         </div>
       </div>
     </div>
