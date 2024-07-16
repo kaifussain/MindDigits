@@ -26,7 +26,6 @@
     padding:1.5rem;
     height: 93%;
     gap:2rem;
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.277);
 }
 .selected{
     background-color: rgb(60, 66, 156);

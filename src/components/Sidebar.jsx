@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 
 const Sidebar = (props) => {
@@ -17,17 +17,24 @@ const Sidebar = (props) => {
         {sideBarOpened ? "⬅️" : "➡️"}
       </button>
       <div style={style4inner} id="sidebarInnerDiv">
-        
         <div className="flex">
           <button>+</button>
           <button>-</button>
           <button>*</button>
           <button>/</button>
           <button>%</button>
-          <button>x<sup>2</sup></button>
-          <button>x<sup>3</sup></button>
-          <button><sup>2</sup>√</button>
-          <button><sup>3</sup>√</button>
+          <button>
+            x<sup>2</sup>
+          </button>
+          <button>
+            x<sup>3</sup>
+          </button>
+          <button>
+            <sup>2</sup>√
+          </button>
+          <button>
+            <sup>3</sup>√
+          </button>
         </div>
         <div className="flex">
           <button>E</button>
@@ -35,11 +42,21 @@ const Sidebar = (props) => {
           <button>H</button>
         </div>
         <div className="flex">
-          <button className={props.isAnsManual?'':'selected'} onClick={props.setIsAnsManualFalse}>Option</button>
-          <button className={props.isAnsManual?'selected':''} onClick={props.setIsAnsManualTrue}>Manual</button>
+          <button
+            className={props.isAnsManual ? "" : "selected"}
+            onClick={props.setIsAnsManualFalse}
+          >
+            Option
+          </button>
+          <button
+            className={props.isAnsManual ? "selected" : ""}
+            onClick={props.setIsAnsManualTrue}
+          >
+            Manual
+          </button>
         </div>
         <div className="no-break-line flex">
-          <button>Dark Mode</button>
+          <button onClick={()=>props.toggleDarkMode()} className={props.darkMode?"selected" : ""}>Dark Mode</button>
         </div>
       </div>
     </div>

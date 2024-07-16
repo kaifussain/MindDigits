@@ -2,7 +2,15 @@
   display: grid;
   place-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+  min-height: 100vh;
+}
+.darkMode{
+  background-color: black;
+  color: white;
+}
+.lightMode{
+  background-color: rgb(214, 214, 214);
+  color: black;
 }
 .flex{
   display: flex;

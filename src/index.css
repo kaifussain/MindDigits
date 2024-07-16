@@ -1,7 +1,9 @@
 :root{
-  background-color: #413a31;
-  color:white;
+  background-color: black;
 }
+ *{
+  box-sizing: border-box;
+ }
 body{
   margin:0;
   padding:0;
