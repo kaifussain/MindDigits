@@ -3,9 +3,6 @@ import './Mainbar.css'
 import AnsOption from './sub-components/AnsOption'
 import AnsManual from './sub-components/AnsManual'
 const Mainbar = (props) => {
-  // const [problemSet,setProblemSet] = useState(['+','-']);
-  // const [digitSet,setDigitSet] = useState([1]);
-  // const [termCount,setTermCount] = useState(3);
   const [question,setQuestion] = useState([]);
   const [solution,setSolution] = useState();
   const [userSolution,setUserSolution] = useState();
@@ -18,9 +15,9 @@ const Mainbar = (props) => {
     return Math.floor(Math.random()*(wholeRange-excludeRange)+excludeRange)
   }
 
-  function generateTerms(){
-
-    let tempQuest=[],tempSol,tempOp
+  function generateQuestion(){
+    setSolution(null)
+    let tempQuest=[],tempOp
     Array.from({ length: props.termCount }).forEach((_,ind)=>{
       
       if(ind!==0) {
@@ -32,13 +29,57 @@ const Mainbar = (props) => {
       let n=generateNumber()
       tempQuest.push(n)
 
-      if(ind===0) tempSol=n
-      else if(tempOp==='+') tempSol+=n
-      else if(tempOp==='-') tempSol-=n
-      
     });
-    setSolution(tempSol)
     setQuestion(tempQuest)
+  }
+  function calculateSolution(){
+    let tempAns = question,i=1,precedence=0
+    while(tempAns.length>1 && precedence<2){
+      if(precedence===0){
+        if(tempAns[i]=='/'){
+          tempAns[i-1]=tempAns[i-1]/tempAns[i+1]
+          tempAns.splice(i,2)
+          i=1
+        }
+        else if(tempAns[i]=='*'){
+          tempAns[i-1]=tempAns[i-1]*tempAns[i+1]
+          tempAns.splice(i,2)
+          i=1
+        }
+        else if(i>tempAns.length-2){
+          i=1;
+          precedence = 1;
+        }
+        else{
+          i+=2
+        }
+      }
+      else if( precedence === 1){
+
+        if(tempAns[i]=='+'){
+          tempAns[i-1]=tempAns[i-1]+tempAns[i+1]
+          tempAns.splice(i,2)
+          i=1
+
+        }
+        else if(tempAns[i]=='-'){
+          tempAns[i-1]=tempAns[i-1]-tempAns[i+1]
+          tempAns.splice(i,2)
+          i=1
+        }
+        else if(i>tempAns.length-2){
+          i=0;
+          precedence = 2;
+        }
+        else{
+          i+=2
+        }
+      }
+    }
+    if(tempAns[0]%1===0){
+      setSolution(tempAns[0])
+    }
+    else setSolution(tempAns[0].toFixed(2))
   }
   
   return (
@@ -47,7 +88,8 @@ const Mainbar = (props) => {
           {question} = {solution}
         </div>
         <div id="Mainbar_mid">
-          <button onClick={()=>generateTerms()}>start</button>
+          <button onClick={()=>generateQuestion()}>question</button>
+          <button onClick={()=>calculateSolution()}>answer</button>
           {props.isAnsManual?<AnsManual/>:<AnsOption/>}
         </div>
     </div>

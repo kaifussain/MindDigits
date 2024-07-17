@@ -3,13 +3,18 @@ import "./Sidebar.css";
 
 const Sidebar = (props) => {
   const [sideBarOpened, setSideBarOpened] = useState(false);
-
+  const [allOperation,_] = useState(['+','-','*','/','%','x²','x³','²x','³x'])
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
   };
   const tags = {
-    backgroundColor:'transparent',fontSize:'13px',margin:'auto',textAlign:'center',width:'fit-content',padding:'0 5px'
-  }
+    backgroundColor: "transparent",
+    fontSize: "13px",
+    margin: "auto",
+    textAlign: "center",
+    width: "fit-content",
+    padding: "0 5px",
+  };
   return (
     <div id="Sidebar">
       <button id="sideBarBtn" onClick={() => setSideBarOpened(!sideBarOpened)}>
@@ -17,28 +22,16 @@ const Sidebar = (props) => {
       </button>
       <div style={style4inner} id="sidebarInnerDiv">
         <div className="flex innerBtns-40px-width">
-        <span style={tags}>Problems</span>
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
-          <button>%</button>
-          <button>
-            x<sup>2</sup>
-          </button>
-          <button>
-            x<sup>3</sup>
-          </button>
-          <button>
-            <sup>2</sup>√
-          </button>
-          <button>
-            <sup>3</sup>√
-          </button>
+          <span style={tags}>Problems</span>
+          {
+            allOperation.map((a,i)=>(
+              <button key={a} className={props.problemSet.includes(a)?'selected':''} onClick={props.handleProblemSetChange}>{a}</button>
+            ))
+          }
         </div>
         <div className="flex innerBtns-40px-width">
-        <span style={tags}>Terms</span>
-          <select>
+          <span style={tags}>Terms</span>
+          <select onChange={props.setTermCount} value={props.termCount}>
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -47,12 +40,10 @@ const Sidebar = (props) => {
           </select>
         </div>
         <div className="flex innerBtns-40px-width">
-        <span style={tags}>Digits</span>
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
+          <span style={tags}>Digits</span>
+          {Array.from({ length: 5 }).map((_, ind) => (
+            <button key={ind} className={props.digitSet.includes(ind+1)?'selected':''} onClick={props.handleDigitChange}>{ind + 1}</button>
+          ))}
         </div>
         <div className="flex innerBtns-40px-width">
           <span style={tags}>Solve</span>
@@ -70,7 +61,12 @@ const Sidebar = (props) => {
           </button>
         </div>
         <div className="no-break-line flex innerBtns-40px-width">
-          <button onClick={()=>props.toggleDarkMode()} className={props.darkMode?"selected" : ""}>DM</button>
+          <button
+            onClick={() => props.toggleDarkMode()}
+            className={props.darkMode ? "selected" : ""}
+          >
+            DM
+          </button>
         </div>
       </div>
     </div>
