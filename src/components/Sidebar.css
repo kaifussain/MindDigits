@@ -1,8 +1,9 @@
 #Sidebar{
     height: 100vh;
     position:relative;
-    transition: .2s;
+    /* transition: .2s; */
     background-color: rgb(50, 60, 67);
+    color:white;
 }
 #sideBarBtn{
     position: absolute;
@@ -14,7 +15,6 @@
     right:-32px;
     top:3px;
     font-size: 20px;
-    /* width: */
 }
 #sideBarBtn:active{
     transform: scale(1.2);
@@ -25,9 +25,16 @@
     align-items: center;
     justify-content: center;
     padding:1.5rem;
-    height: 93%;
-    gap:2rem;
+    height: 98%;
+    gap:1.5rem;
     width: 20rem;
+}
+.tags{
+    background-color:'transparent';
+    font-size:'13px';
+    margin:'auto';
+    text-align:'center';
+    width:'fit-content';
 }
 .innerBtns-40px-width > *{
     width: 40px;
@@ -44,5 +51,6 @@
     }
     #sidebarInnerDiv{
         width: 5rem;
+        /* gap:1rem; */
     }
 }

@@ -7,7 +7,9 @@ const Sidebar = (props) => {
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
   };
-
+  const tags = {
+    backgroundColor:'transparent',fontSize:'13px',margin:'auto',textAlign:'center',width:'fit-content',padding:'0 5px'
+  }
   return (
     <div id="Sidebar">
       <button id="sideBarBtn" onClick={() => setSideBarOpened(!sideBarOpened)}>
@@ -15,6 +17,7 @@ const Sidebar = (props) => {
       </button>
       <div style={style4inner} id="sidebarInnerDiv">
         <div className="flex innerBtns-40px-width">
+        <span style={tags}>Problems</span>
           <button>+</button>
           <button>-</button>
           <button>*</button>
@@ -34,7 +37,17 @@ const Sidebar = (props) => {
           </button>
         </div>
         <div className="flex innerBtns-40px-width">
-          Digits
+        <span style={tags}>Terms</span>
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div className="flex innerBtns-40px-width">
+        <span style={tags}>Digits</span>
           <button>1</button>
           <button>2</button>
           <button>3</button>
@@ -42,6 +55,7 @@ const Sidebar = (props) => {
           <button>5</button>
         </div>
         <div className="flex innerBtns-40px-width">
+          <span style={tags}>Solve</span>
           <button
             className={props.isAnsManual ? "" : "selected"}
             onClick={props.setIsAnsManualFalse}
