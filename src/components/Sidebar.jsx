@@ -3,21 +3,18 @@ import "./Sidebar.css";
 
 const Sidebar = (props) => {
   const [sideBarOpened, setSideBarOpened] = useState(false);
-  const style = {
-    width: sideBarOpened ? "23vw" : "0",
-    color: sideBarOpened ? "" : "transparent",
-  };
+
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
   };
 
   return (
-    <div id="Sidebar" style={style}>
+    <div id="Sidebar">
       <button id="sideBarBtn" onClick={() => setSideBarOpened(!sideBarOpened)}>
-        {sideBarOpened ? "⬅️" : "➡️"}
+        {sideBarOpened ? "❌" : "⭕"}
       </button>
       <div style={style4inner} id="sidebarInnerDiv">
-        <div className="flex">
+        <div className="flex innerBtns-40px-width">
           <button>+</button>
           <button>-</button>
           <button>*</button>
@@ -36,27 +33,30 @@ const Sidebar = (props) => {
             <sup>3</sup>√
           </button>
         </div>
-        <div className="flex">
-          <button>E</button>
-          <button>M</button>
-          <button>H</button>
+        <div className="flex innerBtns-40px-width">
+          Digits
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
         </div>
-        <div className="flex">
+        <div className="flex innerBtns-40px-width">
           <button
             className={props.isAnsManual ? "" : "selected"}
             onClick={props.setIsAnsManualFalse}
           >
-            Option
+            Opt
           </button>
           <button
             className={props.isAnsManual ? "selected" : ""}
             onClick={props.setIsAnsManualTrue}
           >
-            Manual
+            Man
           </button>
         </div>
-        <div className="no-break-line flex">
-          <button onClick={()=>props.toggleDarkMode()} className={props.darkMode?"selected" : ""}>Dark Mode</button>
+        <div className="no-break-line flex innerBtns-40px-width">
+          <button onClick={()=>props.toggleDarkMode()} className={props.darkMode?"selected" : ""}>DM</button>
         </div>
       </div>
     </div>

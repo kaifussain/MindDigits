@@ -1,6 +1,11 @@
 #app{
-  display: grid;
-  place-content: center;
+  /* display: grid;
+  place-content: center; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* flex-direction: column; */
+
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   min-height: 100vh;
 }
@@ -22,4 +27,11 @@
 }
 .no-break-line{
   white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  #app{
+      flex-direction: column;
+      /* overflow-y: hidden; */
+  }
 }

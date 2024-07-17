@@ -1,0 +1,29 @@
+[33mcommit c364b7a2adeb18f7b37de88503562a2f46df3122[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: k417hussain <k417hussain@gmail.com>
+Date:   Tue Jul 16 23:01:06 2024 +0530
+
+    c-m-3:better manual mode layout + toggle darkMode, not in sidebar
+
+[33mcommit 8036823a92708225397123f402d757338c37bd29[m
+Author: k417hussain <k417hussain@gmail.com>
+Date:   Mon Jul 15 17:05:11 2024 +0530
+
+    c-m-2: layout of manual and option input mode
+
+[33mcommit 7f46d0829c527434a81e7aab9348852569a96953[m
+Author: k417hussain <k417hussain@gmail.com>
+Date:   Sun Jul 14 12:45:48 2024 +0530
+
+    c-m-1: +math operations in sideBar
+
+[33mcommit bf24a527abd81e93fb21af3a3e76d84f60e3431d[m
+Author: k417hussain <k417hussain@gmail.com>
+Date:   Sun Jul 14 12:21:07 2024 +0530
+
+    c-m-1: +sideBar layout
+
+[33mcommit b00b4110d4666c3fb4a2276fdfa3dc08b6453a89[m
+Author: k417hussain <k417hussain@gmail.com>
+Date:   Fri Jul 5 20:34:10 2024 +0530
+
+    c-m-0: empty setup
