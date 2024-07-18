@@ -37,7 +37,7 @@
     width:'fit-content';
 }
 .innerBtns-40px-width > *{
-    width: 40px;
+    min-width: 40px;
     background-color: rgb(180, 191, 200);
 }
 .selected{
@@ -50,7 +50,7 @@
         left:0;
     }
     #sidebarInnerDiv{
-        width: 5rem;
-        /* gap:1rem; */
+        width: 6rem;
+        gap:0.8rem;
     }
 }

@@ -7,12 +7,13 @@ function App() {
   const [isAnsManual, setIsAnsManual] = useState(true);
   const [darkMode, setDarkMode] = useState(true);
 
-  const [problemSet, setProblemSet] = useState(["+", "-",'*','/']);
+  const [problemSet, setProblemSet] = useState(["+",'% of']);
   const [digitSet, setDigitSet] = useState([1]);
   const [termCount, setTermCount] = useState(3);
+  const [precision, setPrecision] = useState(1);
+  const [perfect, setPerfect] = useState(true);
 
   function handleDigitChange(digit){
-    console.log(typeof(digit))
     setDigitSet((xDigitSet)=>{
       if(xDigitSet.includes(digit)){
         return xDigitSet.filter((a)=>a!=digit)
@@ -49,12 +50,18 @@ function App() {
         handleDigitChange={(e)=>handleDigitChange(Number(e.target.innerText))}
         termCount={termCount}
         setTermCount={(e)=>setTermCount(e.target.value)}
-      />
+        precision={precision}
+        setPrecision={(e)=>setPrecision(e.target.value)}
+        perfect={perfect}
+        togglePerfect={() => setPerfect(!perfect)}
+        />
       <Mainbar
         isAnsManual={isAnsManual}
         problemSet={problemSet}
         digitSet={digitSet}
         termCount={termCount}
+        precision={precision}
+        perfect={perfect}
       />
     </div>
   );

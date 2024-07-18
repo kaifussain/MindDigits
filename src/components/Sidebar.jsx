@@ -3,7 +3,7 @@ import "./Sidebar.css";
 
 const Sidebar = (props) => {
   const [sideBarOpened, setSideBarOpened] = useState(false);
-  const [allOperation,_] = useState(['+','-','*','/','%','x²','x³','²x','³x'])
+  const [allOperation,_] = useState(['+','-','*','/','% of','²','³','√','³√'])
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
   };
@@ -46,6 +46,17 @@ const Sidebar = (props) => {
           ))}
         </div>
         <div className="flex innerBtns-40px-width">
+          <span style={tags}>Precision</span>
+          <select onChange={props.setPrecision}>
+            <option>1</option>
+            <option>2</option>
+          </select>
+        </div>
+        <div className="flex innerBtns-40px-width">
+          <span style={tags}>√Perfect</span>
+          <input type="checkbox" checked={props.perfect} onChange={props.togglePerfect}></input>
+        </div>
+        <div className="flex innerBtns-40px-width">
           <span style={tags}>Solve</span>
           <button
             className={props.isAnsManual ? "" : "selected"}
@@ -61,12 +72,8 @@ const Sidebar = (props) => {
           </button>
         </div>
         <div className="no-break-line flex innerBtns-40px-width">
-          <button
-            onClick={() => props.toggleDarkMode()}
-            className={props.darkMode ? "selected" : ""}
-          >
-            DM
-          </button>
+        <span style={tags}>Dark Mode</span>
+          <input type="checkbox" checked={props.darkMode} onChange={props.toggleDarkMode}></input>
         </div>
       </div>
     </div>
