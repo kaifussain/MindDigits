@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Mainbar from "./components/Mainbar";
 import Sidebar from "./components/Sidebar";
@@ -9,6 +9,7 @@ function App() {
 
   const [problemSet, setProblemSet] = useState([]);
   const [digitSet, setDigitSet] = useState([1]);
+  const [numberType, setNumberType] = useState(0);
   const [termCount, setTermCount] = useState(1);
   const [precision, setPrecision] = useState(1);
   const [perfect, setPerfect] = useState(true);
@@ -16,12 +17,17 @@ function App() {
   function handleDigitChange(digit){
     setDigitSet((xDigitSet)=>{
       if(xDigitSet.includes(digit)){
-        return xDigitSet.filter((a)=>a!=digit)
+        let x = xDigitSet.filter((a)=>a!=digit)
+        if(x.length===0) return [1]
+        else return x
       }
       else{
         return [...xDigitSet,digit]
       }
     })
+    if(digitSet.length===0){
+      setDigitSet[1]
+    }
   }
   function handleProblemSetChange(op){
     setProblemSet((xProblemSet)=>{
@@ -44,7 +50,6 @@ function App() {
       temp = temp.filter(a => a !== '²' && a !== '³' && a !== '√' && a !== '³√');
       setProblemSet(temp)
     }
-    // setProblemSet([])
   }
   return (
     <div id="app" className={darkMode ? "darkMode" : "lightMode"}>
@@ -66,6 +71,8 @@ function App() {
         perfect={perfect}
         togglePerfect={() => setPerfect(!perfect)}
         emptyProblemSet={emptyProblemSet}
+        numberType={numberType}
+        setNumberType={(e)=>setNumberType(e.target.value)}
         />
       <Mainbar
         isAnsManual={isAnsManual}

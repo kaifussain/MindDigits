@@ -6,8 +6,6 @@ const Mainbar = (props) => {
   const [question, setQuestion] = useState([]);
   const [solution, setSolution] = useState();
   const [userSolution, setUserSolution] = useState();
-  // const [perfectSqSet,_] = useState([3,9,31,99,316])
-  // const [perfectCbSet,__] = useState([2,4,9,21,46])
   const [perfectSqSet,_] = useState([1,4,10,32,100,317])
   const [perfectCbSet,__] = useState([1,3,5,10,22,47])
 

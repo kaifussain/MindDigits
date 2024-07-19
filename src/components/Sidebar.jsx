@@ -128,8 +128,16 @@ const Sidebar = (props) => {
           ))}
         </div>
         <div className="flex innerBtns-40px-width">
+          <span style={tags}>Number</span>
+          <select value={props.numberType} onChange={props.setNumberType}>
+            <option value={0}>Integer</option>
+            <option value={1}>Decimal</option>
+            <option value={2}>Both</option>
+          </select>
+        </div>
+        <div className="flex innerBtns-40px-width">
           <span style={tags}>Precision</span>
-          <select onChange={props.setPrecision}>
+          <select onChange={props.setPrecision} value={props.precision}>
             <option>1</option>
             <option>2</option>
           </select>
