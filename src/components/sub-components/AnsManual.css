@@ -1,10 +1,42 @@
 #AnsManual{
-    width: 70%;
+    width: 85%;
+    font-weight: 700;
 }
 #AnsManual_screen{
-    border-bottom:1px solid rgb(112, 112, 112);
     text-align: center;
-    padding:1rem;
+    padding:0.5rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 35px 35px;
+    margin:auto;
+    max-width: 500px;
+}
+#userInput_sc{
+    border-bottom:1px solid rgb(148, 148, 148);
+    margin-left: 70px;
+    font-size: 20px;
+    line-break: anywhere;
+    min-height: 30px;
+   
+}
+#backBtn, #xBtn{
+    border:1.6px solid rgb(108, 108, 108);
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 24px;
+    width: 25px;
+    display: grid;
+    place-content: center;
+    border-radius:3px;
+    transition: scale .1s;
+}
+#xBtn{
+    color:rgb(222, 0, 0);
+}
+
+#backBtn:active, #xBtn:active{
+    transform: scale(0.9);
 }
 #AnsManual_buttons_body{
     display: grid;
@@ -12,19 +44,20 @@
     margin-top: 16px;
 }
 #AnsManual_buttons_body >* {
-    /* color:rgb(183, 183, 183); */
     text-align: center;
     padding:1rem;
     cursor: pointer;
     transition: .1s;
 }
-#AnsManual_buttons_body>*:last-child {
-    outline: 2px solid rgb(99, 99, 99);
+#submitBtn {
+    outline: 2px solid rgb(108, 108, 108);
     grid-column-start: 2;
-    width: fit-content;
+    width: 55px;
     margin: auto;
     border-radius: 5%;
     margin-top: 35px;
+    margin-bottom: 20px;
+    color:rgb(30, 180, 87);
 }
 #AnsManual_buttons_body >*:active {
     transform: scale(0.8);

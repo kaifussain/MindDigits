@@ -1,12 +1,8 @@
 #app{
-  /* display: grid;
-  place-content: center; */
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  /* flex-direction: column; */
-
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
 }
 .darkMode{
@@ -14,7 +10,7 @@
   color: white;
 }
 .lightMode{
-  background-color: rgb(214, 214, 214);
+  background-color: white;
   color: black;
 }
 .flex{
@@ -32,6 +28,5 @@
 @media (max-width: 600px) {
   #app{
       flex-direction: column;
-      /* overflow-y: hidden; */
   }
 }

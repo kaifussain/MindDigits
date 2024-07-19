@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 
 const Sidebar = (props) => {
-  const [sideBarOpened, setSideBarOpened] = useState(true);
-  const [sqPartDisable,setSqPartDisable] = useState(false)
-  const [addPartDisable,setAddPartDisable] = useState(false)
+  const [sideBarOpened, setSideBarOpened] = useState(false);
   const [allOperation, setAllOperation] = useState([
     { symbol: "+", disabled: false },
     { symbol: "-", disabled: false },
@@ -17,59 +15,25 @@ const Sidebar = (props) => {
     { symbol: "³√", disabled: false },
   ]);
 
-  useEffect(()=>{
-    let temp = [...allOperation];
-    let i = 5;
-    if(sqPartDisable){
-      props.emptyProblemSet('s')
-      while (i < 9) {
-        temp[i].disabled = true;
-        i++;
-      }
-    }
-    else{
-      while (i < 9) {
-        temp[i].disabled = false;
-        i++;
-      }
-    }
-    setAllOperation(temp);
-  },[sqPartDisable])
-
-  useEffect(()=>{
-    let temp = [...allOperation];
-    let i = 0;
-    if(addPartDisable){
-      props.emptyProblemSet('o')
-      while (i < 5) {
-        temp[i].disabled = true;
-        i++;
-      }
-    }
-    else{
-      while (i < 5) {
-        temp[i].disabled = false;
-        i++;
-      }
-    }
-    setAllOperation(temp);
-  },[addPartDisable])
-
   useEffect(() => {
-    if(props.termCount==1){
-      setAddPartDisable(true)
-      setSqPartDisable(false)
-    }
-    else{
-      setAddPartDisable(false)
-      if(props.problemSet.length==0 || !props.problemSet.some(a=>a=='+'||a=='-'||a=='×'||a=='÷'||a=='% of')){
-        setSqPartDisable(true)
+    let temp = [...allOperation];
+
+      if(props.termCount==1){
+        let i=0;
+        while(i<5){
+          temp[i].disabled=true
+          i++
+        }
       }
       else{
-        setSqPartDisable(false)
+        let i=0;
+        while(i<5){
+          temp[i].disabled=false
+          i++
+        }
       }
-    }
-  }, [props.termCount,props.problemSet]);
+      setAllOperation(temp)
+  }, [props.termCount]);
 
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
