@@ -7,9 +7,9 @@ function App() {
   const [isAnsManual, setIsAnsManual] = useState(true);
   const [darkMode, setDarkMode] = useState(true);
 
-  const [problemSet, setProblemSet] = useState(["+",'% of']);
+  const [problemSet, setProblemSet] = useState([]);
   const [digitSet, setDigitSet] = useState([1]);
-  const [termCount, setTermCount] = useState(3);
+  const [termCount, setTermCount] = useState(1);
   const [precision, setPrecision] = useState(1);
   const [perfect, setPerfect] = useState(true);
 
@@ -24,7 +24,6 @@ function App() {
     })
   }
   function handleProblemSetChange(op){
-    console.log(typeof(op))
     setProblemSet((xProblemSet)=>{
       if(xProblemSet.includes(op)){
         return xProblemSet.filter((a)=>a!=op)
@@ -34,7 +33,19 @@ function App() {
       }
     })
   }
-
+  function emptyProblemSet(p){
+    if(p=='o'){
+      let temp=[...problemSet]
+      temp = temp.filter(a => a !== '+' && a !== '-' && a !== '×' && a !== '÷' && a !== '% of');
+      setProblemSet(temp)
+    }
+    else if(p=='s'){
+      let temp=[...problemSet]
+      temp = temp.filter(a => a !== '²' && a !== '³' && a !== '√' && a !== '³√');
+      setProblemSet(temp)
+    }
+    // setProblemSet([])
+  }
   return (
     <div id="app" className={darkMode ? "darkMode" : "lightMode"}>
       <Sidebar
@@ -54,6 +65,7 @@ function App() {
         setPrecision={(e)=>setPrecision(e.target.value)}
         perfect={perfect}
         togglePerfect={() => setPerfect(!perfect)}
+        emptyProblemSet={emptyProblemSet}
         />
       <Mainbar
         isAnsManual={isAnsManual}
