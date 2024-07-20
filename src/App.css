@@ -10,8 +10,8 @@
   color: white;
 }
 .lightMode{
-  background-color: white;
-  color: black;
+  background-color: rgb(192, 230, 255);
+  font-weight: 700;
 }
 .flex{
   display: flex;
@@ -24,7 +24,12 @@
 .no-break-line{
   white-space: nowrap;
 }
-
+.btnEffect:active{
+  transform: scale(1.2);
+}
+.hide{
+  display: none;
+}
 @media (max-width: 600px) {
   #app{
       flex-direction: column;

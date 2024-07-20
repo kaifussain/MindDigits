@@ -49,7 +49,7 @@ const Sidebar = (props) => {
   return (
     <div id="Sidebar">
       <button id="sideBarBtn" onClick={() => setSideBarOpened(!sideBarOpened)}>
-        {sideBarOpened ? "❌" : "⭕"}
+        {sideBarOpened ? "✖" : "☰"}
       </button>
       <div style={style4inner} id="sidebarInnerDiv">
         <div className="flex innerBtns-40px-width">

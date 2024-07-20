@@ -4,6 +4,7 @@
     /* transition: .2s; */
     background-color: rgb(50, 60, 67);
     color:white;
+    font-weight: 100;
 }
 #sideBarBtn{
     position: absolute;
@@ -12,9 +13,10 @@
     height: fit-content;
     padding:0;
     border:none;
-    right:-32px;
+    right:-34px;
     top:3px;
-    font-size: 20px;
+    font-size: 28px;
+    color:rgb(87, 90, 99);
 }
 #sideBarBtn:active{
     transform: scale(1.2);
@@ -38,8 +40,9 @@
 }
 .innerBtns-40px-width > *{
     min-width: 40px;
-    background-color: rgb(180, 191, 200);
+    background-color: rgb(121, 142, 167);
     padding:0;
+    outline:none;
 }
 .selected{
     background-color: rgb(39, 92, 171);

@@ -60,7 +60,10 @@ function App() {
         setProblemSet(x=>{
           let newSet;
           newSet = x.filter(a=>a==='²'||a==='³'||a==='√'||a==='³√')
-          return newSet;
+          if(newSet.length == 0){
+            return ['²']
+          }
+          else return newSet;
         })
       }
     }
@@ -71,24 +74,6 @@ function App() {
     }
   },[termCount])
 
-  function emptyProblemSet(p){
-    let temp=[...problemSet]
-    if(p=='o'){
-      temp = temp.filter(a => a !== '+' && a !== '-' && a !== '×' && a !== '÷' && a !== '% of');
-      if(termCount==1){
-        if(temp.length>0) setProblemSet(temp)
-        else setProblemSet(['²'])
-      }
-      else{
-        setProblemSet(temp)
-      }
-    }
-    else if(p=='s'){
-
-      temp = temp.filter(a => a !== '²' && a !== '³' && a !== '√' && a !== '³√');
-      setProblemSet(temp)
-    }
-  }
   return (
     <div id="app" className={darkMode ? "darkMode" : "lightMode"}>
       <Sidebar
@@ -108,7 +93,6 @@ function App() {
         setPrecision={(e)=>setPrecision(e.target.value)}
         perfect={perfect}
         togglePerfect={() => setPerfect(!perfect)}
-        emptyProblemSet={emptyProblemSet}
         numberType={numberType}
         setNumberType={(e)=>setNumberType(e.target.value)}
         />

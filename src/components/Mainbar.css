@@ -3,11 +3,16 @@
     width:65vw;
     height: 99vh;
     margin: auto;
+    /* display: grid; */
+    /* place-items: center; */
+    /* width:100%; */
 }
 #Mainbar_head{
     text-align: center;
     font-size: 24px;
     min-height: 150px;
+    /* padding:56px 0; */
+    margin-top: 2vh;
     display: grid;
     place-content: center;
 }
@@ -15,4 +20,26 @@
     height: 74%;
     display: grid;
     place-items: center;
+}
+#result_home{
+    width: fit-content;
+    position:absolute;
+    right:5px;
+    top:5px;
+    padding:0;
+}
+#homeResult_btn{
+    cursor: pointer;
+    font-size: 23px;
+}
+
+#generateBtn{
+    padding:10px 5vw;
+    background-color: rgb(50, 60, 67);
+    border:none;
+    border-radius: 5px;
+    font-size: 22px;
+    color:white;
+    position: absolute;
+    top:45vh;
 }

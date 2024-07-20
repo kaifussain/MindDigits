@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import './AnsManual.css'
-const AnsManual = ({setUserSolution,calculateSolution}) => {
+const AnsManual = ({setUserSolution,calculateSolution,generateQuestion,showShortResult}) => {
   const [userInput,setUserInput] = useState('')
   const handleInput = (i) => {
     setUserInput(x => {
+      x = x.toString()
       if(x==='') return i
       else{
           if(i==='-') return x
           else if(i==='.' && x.includes('.')) return x
-          else return x.toString()+i
-
+          else return x+i
       }
     })
   }
@@ -20,8 +20,13 @@ const AnsManual = ({setUserSolution,calculateSolution}) => {
     setUserInput('')
   }
   const submitInput = () => {
-    calculateSolution()
-    setUserSolution(userInput)
+    if(userInput!==''){
+      calculateSolution()
+      setUserInput('')
+      // if(userSolution!==null) setPrevUserSolution(userSolution)
+      setUserSolution(userInput)
+      // if(showShortResult) generateQuestion()
+    }
   }
   return (
     <div id="AnsManual">
@@ -33,7 +38,7 @@ const AnsManual = ({setUserSolution,calculateSolution}) => {
         ↩
         </div>
         <div id='xBtn' onClick={clearInput} >
-          ✗
+        ✖
         </div>
       </div>
       <div id="AnsManual_buttons_body">

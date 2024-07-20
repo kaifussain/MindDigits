@@ -12,6 +12,7 @@
 }
 #userInput_sc{
     border-bottom:1px solid rgb(148, 148, 148);
+    border-bottom:1px solid rgb(119, 118, 118);
     margin-left: 70px;
     font-size: 20px;
     line-break: anywhere;
