@@ -13,7 +13,7 @@ function App() {
   const [precision, setPrecision] = useState(1);
   const [perfect, setPerfect] = useState(true);
   const [reset,setReset] = useState(false)
-  const [timer,setTimer] = useState(2)
+  const [timer,setTimer] = useState(0)
 
   function handleDigitChange(digit){
     setDigitSet((xDigitSet)=>{
