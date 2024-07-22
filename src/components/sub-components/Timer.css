@@ -1,0 +1,22 @@
+.Timer{
+    position:absolute;
+    margin:auto;
+    left:0;
+    right:0;
+    width: fit-content;
+    text-align: center;
+    width:200px;
+}
+.timerVisual{
+    height: 7px;
+    transition: all 1s linear;
+    border-radius: 10px;
+}
+.timeLeft{
+    font-size: 12px;
+}
+.timeUp{
+    color:red;
+    font-size: 22px;
+    margin-top: 3px;
+}

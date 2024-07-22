@@ -4,7 +4,7 @@ import Mainbar from "./components/Mainbar";
 import Sidebar from "./components/Sidebar";
 
 function App() {
-  const [isAnsManual, setIsAnsManual] = useState(true);
+  const [isAnsManual, setIsAnsManual] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [problemSet, setProblemSet] = useState(['+']);
   const [digitSet, setDigitSet] = useState([1]);
@@ -12,6 +12,8 @@ function App() {
   const [termCount, setTermCount] = useState(2);
   const [precision, setPrecision] = useState(1);
   const [perfect, setPerfect] = useState(true);
+  const [reset,setReset] = useState(false)
+  const [timer,setTimer] = useState(2)
 
   function handleDigitChange(digit){
     setDigitSet((xDigitSet)=>{
@@ -33,7 +35,6 @@ function App() {
       let newSet;
       if(xProblemSet.includes(op)){
         newSet = xProblemSet.filter((a)=>a!=op)
-        // return x
       }
       else{
         newSet = [...xProblemSet,op]
@@ -44,7 +45,7 @@ function App() {
         else return ['+']
       }
       else if(termCount==1){
-        newSet = newSet.filter(a=>a==='²'||a==='³'||a==='√'||a==='³√')
+        newSet = newSet.filter(a=>a==='²'||a==='³'||a==='√'||a==='∛')
         return newSet
       }
       else{
@@ -59,7 +60,7 @@ function App() {
       if(problemSet.some(a=>a==='+'||a==='-'||a==='×'||a==='÷'||a==='% of')){
         setProblemSet(x=>{
           let newSet;
-          newSet = x.filter(a=>a==='²'||a==='³'||a==='√'||a==='³√')
+          newSet = x.filter(a=>a==='²'||a==='³'||a==='√'||a==='∛')
           if(newSet.length == 0){
             return ['²']
           }
@@ -73,6 +74,10 @@ function App() {
       }
     }
   },[termCount])
+
+  useEffect(()=>{
+    setReset(!reset)
+  },[problemSet,digitSet,numberType,termCount,precision,perfect,isAnsManual,timer])
 
   return (
     <div id="app" className={darkMode ? "darkMode" : "lightMode"}>
@@ -95,6 +100,8 @@ function App() {
         togglePerfect={() => setPerfect(!perfect)}
         numberType={numberType}
         setNumberType={(e)=>setNumberType(e.target.value)}
+        timer={timer}
+        setTimer={(e)=>setTimer(e.target.value)}
         />
       <Mainbar
         isAnsManual={isAnsManual}
@@ -104,6 +111,8 @@ function App() {
         precision={precision}
         perfect={perfect}
         numberType={numberType}
+        reset={reset}
+        timer={timer}
       />
     </div>
   );

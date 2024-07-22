@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AnsManual.css'
-const AnsManual = ({setUserSolution,calculateSolution,generateQuestion,showShortResult}) => {
+const AnsManual = ({setUserSolution,calculateSolution,generateQuestion,showShortResult,userSolution}) => {
   const [userInput,setUserInput] = useState('')
   const handleInput = (i) => {
     setUserInput(x => {
@@ -23,9 +23,7 @@ const AnsManual = ({setUserSolution,calculateSolution,generateQuestion,showShort
     if(userInput!==''){
       calculateSolution()
       setUserInput('')
-      // if(userSolution!==null) setPrevUserSolution(userSolution)
       setUserSolution(userInput)
-      // if(showShortResult) generateQuestion()
     }
   }
   return (

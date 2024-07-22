@@ -3,6 +3,7 @@ import "./Mainbar.css";
 import AnsOption from "./sub-components/AnsOption";
 import AnsManual from "./sub-components/AnsManual";
 import Result from "./sub-components/Result";
+import Timer from "./sub-components/Timer";
 const Mainbar = (props) => {
   const [question, setQuestion] = useState([]);
   const [solution, setSolution] = useState(null);
@@ -20,7 +21,8 @@ const Mainbar = (props) => {
   const [prevQuestion, setPrevQuestion] = useState([]);
   const [prevSolution, setPrevSolution] = useState(null);
   const [prevUserSolution, setPrevUserSolution] = useState(null);
-
+  const [timeUp,setTimeUp] = useState(false)
+  const [solvedBeforeTime,setsolvedBeforeTime] = useState(false)
 
   function generateNumber() {
     let d = Math.floor(Math.random() * props.digitSet.length);
@@ -67,7 +69,7 @@ const Mainbar = (props) => {
       );
       return filteredSet[i % filteredSet.length];
     } else if (op == "r") {
-      let filteredSet = props.problemSet.filter((a) => a == "√" || a == "³√");
+      let filteredSet = props.problemSet.filter((a) => a == "√" || a == "∛");
       return filteredSet[i % filteredSet.length];
     } else if (op == "s") {
       let filteredSet = props.problemSet.filter((a) => a == "²" || a == "³");
@@ -78,12 +80,17 @@ const Mainbar = (props) => {
     }
   }
   function generateQuestion() {
-    setShowShortResult(!showResultEachTime);
-    if(question.length>0){
-        setPrevQuestion(question)
-        // setPrevUserSolution(userSolution)
+    if(props.timer>0){
+      setTimeUp(false)
+      setsolvedBeforeTime(false)
     }
-    // setUserSolution(null)
+    setUserSolution(null);
+
+    setShowShortResult(!showResultEachTime);
+    if (props.isAnsManual && question.length > 0) {
+      setPrevQuestion(question);
+      setPrevUserSolution(userSolution);
+    }
 
     let tempQuest = [],
       pushed;
@@ -95,7 +102,7 @@ const Mainbar = (props) => {
       }
 
       //adds r
-      if (props.problemSet.some((r) => r == "√" || r == "³√")) {
+      if (props.problemSet.some((r) => r == "√" || r == "∛")) {
         if (props.termCount == 1) {
           if (props.problemSet.some((r) => r == "²" || r == "³")) {
             if (Math.random() < 0.5) {
@@ -143,14 +150,13 @@ const Mainbar = (props) => {
       }
     });
     setQuestion(tempQuest);
-    if(prevQuestion.length===0){
-      setPrevQuestion(tempQuest)
+    if (props.isAnsManual && prevQuestion.length === 0) {
+      setPrevQuestion(tempQuest);
     }
   }
   function calculateSolution() {
-    if(showShortResult && solution.length>0){
-      setPrevSolution(solution)
-      // setPrevUserSolution(userSolution)
+    if (props.isAnsManual && showShortResult && solution.length > 0) {
+      setPrevSolution(solution);
     }
     let tempAns = [...question],
       tempAnsLen = tempAns.length,
@@ -170,7 +176,7 @@ const Mainbar = (props) => {
           tempAns[i] = Math.sqrt(tempAns[i + 1]);
           tempAns.splice(i + 1, 1);
           i = 0;
-        } else if (tempAns[i] == "³√") {
+        } else if (tempAns[i] == "∛") {
           tempAns[i] = Math.cbrt(tempAns[i + 1]);
           tempAns.splice(i + 1, 1);
           i = 0;
@@ -226,19 +232,23 @@ const Mainbar = (props) => {
     }
     if (tempAns[0] % 1 === 0) {
       setSolution(tempAns[0]);
-      if(prevSolution===null){
-        setPrevSolution(tempAns[0])
+      if (props.isAnsManual && prevSolution === null) {
+        setPrevSolution(tempAns[0]);
       }
     } else {
-      let n=parseFloat(tempAns[0].toFixed(props.precision));
+      let n = parseFloat(tempAns[0].toFixed(props.precision));
       setSolution(n);
-      if(prevSolution===null){
-        setPrevSolution(n)
+      if (props.isAnsManual && prevSolution === null) {
+        setPrevSolution(n);
       }
     }
   }
   useEffect(() => {
-    if (userSolution !== null) {
+    
+    if (props.isAnsManual && userSolution !== null) {
+      if(props.timer>0){
+        setsolvedBeforeTime(true)
+      }
       setIsClose(false);
       let tf = userSolution == solution;
       if (tf) {
@@ -254,40 +264,45 @@ const Mainbar = (props) => {
           setWrongSolutions((x) => x + 1);
         }
       }
-      // setShowResult(showResultEachTime);
-      if(showResultEachTime && !showShortResult){
-        setShowResult(true)
+      if (props.isAnsManual) {
+        if (showResultEachTime && !showShortResult) {
+          setShowResult(true);
+        } else if (showResultEachTime) {
+          setShowShortResult(false);
+          setShowResult(true);
+        } else {
+          generateQuestion();
+        }
       }
-      else if(showResultEachTime){
-        // set
-        // generateQuestion()
-        setShowShortResult(false)
-        setShowResult(true)
-      }
-      else{
-        console.log('yaha:')
-        generateQuestion()
-      }
-      // if (!showResultEachTime) {
-      //   setUserSolution(null);
-      //   generateQuestion();
-      // }
     }
   }, [userSolution]);
 
-  // useEffect(()=>{
-  //   if(!showResultEachTime) generateQuestion()
-  // },[userSolution])
+  useEffect(() => {
+    setQuestion([]);
+    setCorrectSolutions(0);
+    setWrongSolutions(0);
+    setShowResult(false);
+  }, [props.reset]);
+
+  useEffect(()=>{
+    if(timeUp && props.isAnsManual && !showShortResult){
+      calculateSolution()
+      setShowResult(true)
+    }
+  },[timeUp])
 
   return (
     <div id="Mainbar">
+      {props.timer>0 && question.length>0 && <Timer initialTime={props.timer} setTimeUp={setTimeUp} timeUp={timeUp} solvedBeforeTime={solvedBeforeTime} setsolvedBeforeTime={setsolvedBeforeTime}/>}
       <div id="result_home">
+     
         <div
           onClick={() => setShowResult(!showResult)}
           id="homeResult_btn"
-          className={"btnEffect" && (showShortResult ? "" : "hide")}
+          key={userSolution}
+          className={`${showShortResult ? "pop" : "hide"}`}
         >
-          {showResult ? "📖" : isCorrect ? (isClose ? "⁕📗" : "📗") : "📕"}
+          {showResult ? "↶📖" : isCorrect ? (isClose ? "⁕📗" : "✓📗") : "✕📕"}
         </div>
         {showShortResult && showResult && (
           <Result
@@ -296,18 +311,30 @@ const Mainbar = (props) => {
             setShowResultEachTime={() =>
               setShowResultEachTime(!showResultEachTime)
             }
-            // userSolution={prevUserSolution}
-            userSolution={userSolution}
+            userSolution={prevUserSolution}
             question={prevQuestion}
-            // solution={prevSolution}
             solution={solution}
             correctSolutions={correctSolutions}
             wrongSolutions={wrongSolutions}
             isCorrect={isCorrect}
             isClose={isClose}
+            timeUp={timeUp}
             type="short"
           />
         )}
+        <div className={props.isAnsManual ? "hide" : "optionModeResult"}>
+          {correctSolutions > 0 && (
+            <div>
+              Correct: <span>{correctSolutions}</span>
+            </div>
+          )}
+          {wrongSolutions > 0 && (
+            <div>
+              Wrong: &nbsp;&nbsp;<span>{wrongSolutions}</span>
+            </div>
+          )}
+        </div>
+        
       </div>
       <div id="Mainbar_head">{question.join(" ")}</div>
       <div id="Mainbar_mid">
@@ -324,10 +351,7 @@ const Mainbar = (props) => {
             showResult={showResult}
             setShowResult={setShowResult}
             isCorrect={isCorrect}
-            // userSolution={userSolution}
             userSolution={userSolution}
-            // setUserSolution={setUserSolution}
-            // solution={solution}
             solution={solution}
             showResultEachTime={showResultEachTime}
             showShortResult={showShortResult}
@@ -338,20 +362,37 @@ const Mainbar = (props) => {
             correctSolutions={correctSolutions}
             wrongSolutions={wrongSolutions}
             isClose={isClose}
+            timerIsOn={props.timer>0}
+            timeUp={timeUp}
+            setTimeUp={setTimeUp}
+            solvedBeforeTime={solvedBeforeTime}
             type="full"
           />
         ) : props.isAnsManual ? (
           <AnsManual
             setUserSolution={setUserSolution}
-            // userSolution={userSolution}
+            userSolution={userSolution}
             calculateSolution={calculateSolution}
             generateQuestion={generateQuestion}
             showShortResult={showShortResult}
-            // showResultEachTime={showResultEachTime}
-            // setPrevUserSolution={setPrevUserSolution}
+            
           />
         ) : (
-          <AnsOption />
+          <AnsOption
+            userSolution={userSolution}
+            solution={solution}
+            question={question}
+            generateQuestion={generateQuestion}
+            calculateSolution={calculateSolution}
+            setCorrectSolutions={setCorrectSolutions}
+            setWrongSolutions={setWrongSolutions}
+            precision={props.precision}
+            timeUp={timeUp}
+            setTimeUp={setTimeUp}
+            timerIsOn={props.timer>0}
+            setsolvedBeforeTime={setsolvedBeforeTime}
+            solvedBeforeTime={solvedBeforeTime}
+          />
         )}
       </div>
     </div>

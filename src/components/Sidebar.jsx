@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
+import numpadPng from "../assets/numpad.png";
+import option4 from "../assets/option4.png";
 
 const Sidebar = (props) => {
   const [sideBarOpened, setSideBarOpened] = useState(false);
@@ -12,39 +14,39 @@ const Sidebar = (props) => {
     { symbol: "²", disabled: false },
     { symbol: "³", disabled: false },
     { symbol: "√", disabled: false },
-    { symbol: "³√", disabled: false },
+    { symbol: "∛", disabled: false },
   ]);
 
   useEffect(() => {
     let temp = [...allOperation];
 
-      if(props.termCount==1){
-        let i=0;
-        while(i<5){
-          temp[i].disabled=true
-          i++
-        }
+    if (props.termCount == 1) {
+      let i = 0;
+      while (i < 5) {
+        temp[i].disabled = true;
+        i++;
       }
-      else{
-        let i=0;
-        while(i<5){
-          temp[i].disabled=false
-          i++
-        }
+    } else {
+      let i = 0;
+      while (i < 5) {
+        temp[i].disabled = false;
+        i++;
       }
-      setAllOperation(temp)
+    }
+    setAllOperation(temp);
   }, [props.termCount]);
 
   const style4inner = {
     display: sideBarOpened ? "flex" : "none",
+    marginLeft: "58px",
   };
   const tags = {
     backgroundColor: "transparent",
     fontSize: "13px",
-    margin: "auto",
     textAlign: "center",
-    width: "fit-content",
-    padding: "0 5px",
+    position: "absolute",
+    left: "14px",
+    marginRight: "20px",
   };
   return (
     <div id="Sidebar">
@@ -120,16 +122,33 @@ const Sidebar = (props) => {
             className={props.isAnsManual ? "" : "selected"}
             onClick={props.setIsAnsManualFalse}
           >
-            Opt
+            <img src={option4} className="optImg"></img>
           </button>
           <button
             className={props.isAnsManual ? "selected" : ""}
             onClick={props.setIsAnsManualTrue}
           >
-            Man
+            <img src={numpadPng} className="optImg"></img>
           </button>
         </div>
-        <div className="no-break-line flex innerBtns-40px-width">
+        <div className="flex innerBtns-40px-width">
+          <span style={tags}>Timer</span>
+          <select onChange={props.setTimer} value={props.timer}>
+            <option value={0}>off</option>
+            <option value={2}>2 s</option>
+            <option value={5}>5 s</option>
+            <option value={10}>10 s</option>
+            <option value={15}>15 s</option>
+            <option value={30}>30 s</option>
+            <option value={45}>45 s</option>
+            <option value={60}>60 s</option>
+            <option value={90}>90 s</option>
+            <option value={120}>120 s</option>
+            <option value={150}>150 s</option>
+            <option value={180}>180 s</option>
+          </select>
+        </div>
+        <div className="no-break-line innerBtns-40px-width flex">
           <span style={tags}>Dark Mode</span>
           <input
             type="checkbox"

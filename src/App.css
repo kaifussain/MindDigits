@@ -1,7 +1,6 @@
 #app{
   display: flex;
   align-items: center;
-  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
 }
@@ -16,7 +15,6 @@
 .flex{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 .block{
   display: block;

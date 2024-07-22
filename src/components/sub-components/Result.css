@@ -8,7 +8,6 @@
     transition: .3s;
 }
 #ResultShort{
-    /* width: 300px; */
     min-width: 350px;
     font-size: 14px;
     position:absolute;
@@ -57,7 +56,6 @@
     margin-top: 10px;
 }
 #nextBtn{
-    background-color: transparent;
     border:none;
     background-color: rgb(37, 123, 163);
     color:white;

@@ -6,18 +6,17 @@
     /* display: grid; */
     /* place-items: center; */
     /* width:100%; */
+    display: grid;
 }
 #Mainbar_head{
     text-align: center;
     font-size: 24px;
     min-height: 150px;
-    /* padding:56px 0; */
-    margin-top: 2vh;
     display: grid;
     place-content: center;
 }
 #Mainbar_mid{
-    height: 74%;
+    height:400px;
     display: grid;
     place-items: center;
 }
@@ -42,4 +41,33 @@
     color:white;
     position: absolute;
     top:45vh;
+}
+.pop{
+    animation: pop .5s;
+}
+.optionModeResult{
+    padding:4px 9px;
+    font-family: monospace;
+    font-style: oblique;
+}
+.optionModeResult > * span{
+    font-size: larger;
+}
+
+@keyframes pop {
+    0%{
+        transform: scale(0);
+    }
+    90%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@media (max-width: 600px) {
+    #Mainbar_mid{
+        display: flex;
+        justify-content: center;
+    }
 }
