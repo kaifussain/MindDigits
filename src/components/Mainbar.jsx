@@ -282,6 +282,8 @@ const Mainbar = (props) => {
     setCorrectSolutions(0);
     setWrongSolutions(0);
     setShowResult(false);
+    setShowShortResult(false);
+    setShowResultEachTime(true)
   }, [props.reset]);
 
   useEffect(()=>{

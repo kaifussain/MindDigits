@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Sidebar.css";
 import numpadPng from "../assets/numpad.png";
 import option4 from "../assets/option4.png";
@@ -17,6 +17,19 @@ const Sidebar = (props) => {
     { symbol: "∛", disabled: false },
   ]);
 
+  const sideBarRef = useRef(null)
+  useEffect(()=>{
+    const handleClickOutside = (e) => {
+      if(window.innerWidth < 600 && sideBarRef.current && !sideBarRef.current.contains(e.target)){
+        setSideBarOpened(false)
+      }
+    }
+    document.addEventListener('mousedown',handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[])
+  
   useEffect(() => {
     let temp = [...allOperation];
 
@@ -49,7 +62,7 @@ const Sidebar = (props) => {
     marginRight: "20px",
   };
   return (
-    <div id="Sidebar">
+    <div id="Sidebar" ref={sideBarRef}>
       <button id="sideBarBtn" onClick={() => setSideBarOpened(!sideBarOpened)}>
         {sideBarOpened ? "✖" : "☰"}
       </button>
