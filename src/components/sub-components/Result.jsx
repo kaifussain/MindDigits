@@ -29,7 +29,7 @@ const Result = ({
   return type === "full" ? (
     <div id="ResultFull" className={showResult ? " resultShow" : " resultHide"}>
       <div id="result_title" style={correctStyle}>
-        {timeUp? "" : isCorrect ? (isClose ? "Correct *" : "Correct") : "Wrong"}
+        {timeUp && !solvedBeforeTime? "" : isCorrect ? (isClose ? "Correct *" : "Correct") : "Wrong"}
       </div>
       {showResultEachTime ? "" : question}
       

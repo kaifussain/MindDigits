@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AnsManual.css'
-const AnsManual = ({setUserSolution,calculateSolution,generateQuestion,showShortResult,userSolution}) => {
+const AnsManual = ({setUserSolution,calculateSolution}) => {
   const [userInput,setUserInput] = useState('')
   const handleInput = (i) => {
     setUserInput(x => {

@@ -3,9 +3,6 @@
     width:65vw;
     height: 99vh;
     margin: auto;
-    /* display: grid; */
-    /* place-items: center; */
-    /* width:100%; */
     display: grid;
 }
 #Mainbar_head{
@@ -69,5 +66,9 @@
     #Mainbar_mid{
         display: flex;
         justify-content: center;
+    }
+    .optionModeResult{
+        padding:2px 6px;
+        font-size: 12px;
     }
 }

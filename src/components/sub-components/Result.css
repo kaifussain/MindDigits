@@ -39,11 +39,11 @@
 #prevQuestion{
     font-family:monospace;
     color:rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 18px;
 }
 #result_equation_short{
     font-family:monospace;
-    font-size: 13px;
+    font-size: 11px;
 }
 #result_history{
     display:flex;
@@ -74,4 +74,10 @@
 
 .resultHide{
     transform: translateX(100vw) translateY(-100vh) scale(0);
+}
+@media (max-width: 600px) {
+    #ResultShort{
+        min-width: 300px;
+        right:4px;
+    }
 }

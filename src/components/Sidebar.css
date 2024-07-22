@@ -16,7 +16,8 @@
     right:-34px;
     top:3px;
     font-size: 28px;
-    color:rgb(87, 90, 99);
+    color:rgb(102, 106, 117);
+    cursor: pointer;
 }
 #sideBarBtn:active{
     transform: scale(1.2);
@@ -51,7 +52,7 @@
     #sidebarInnerDiv{
         width: 6rem;
         gap:0.8rem;
-        height: 100%;
+        height: 97%;
     }
     .innerBtns-40px-width > *{
         min-width: 37px;
