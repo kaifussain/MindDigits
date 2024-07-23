@@ -1,8 +1,11 @@
-# React + Vite
+# MindDigits
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An App designed to help users improve their mental calculation skills.
 
-Currently, two official plugins are available:
+![image](https://github.com/user-attachments/assets/b7dccd43-3465-45f2-ab91-27e2494bac48)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![image](https://github.com/user-attachments/assets/9e3decda-a736-42df-818a-37dac1a4b123)
+
+
+
+[Explore MindDigits](https://kaifussain.github.io/MindDigits/)
