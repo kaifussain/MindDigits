@@ -11,6 +11,7 @@
     min-height: 100px;
     display: grid;
     place-content: center;
+    margin-bottom: 40px;
 }
 #Mainbar_mid{
     height:450px;
