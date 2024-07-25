@@ -8,12 +8,12 @@
 #Mainbar_head{
     text-align: center;
     font-size: 24px;
-    min-height: 150px;
+    min-height: 100px;
     display: grid;
     place-content: center;
 }
 #Mainbar_mid{
-    height:400px;
+    height:450px;
     display: grid;
     place-items: center;
 }

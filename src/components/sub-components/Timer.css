@@ -1,11 +1,9 @@
 .Timer{
-    position:absolute;
-    margin:auto;
-    left:0;
-    right:0;
-    width: fit-content;
+    margin:0 auto;
+    height: fit-content;
     text-align: center;
     width:300px;
+    border:1px solid white;
 }
 .timerVisual{
     height: 7px;

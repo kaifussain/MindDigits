@@ -9,6 +9,7 @@
     grid-template-columns: 1fr 35px 35px;
     margin:auto;
     max-width: 500px;
+
 }
 #userInput_sc{
     border-bottom:1px solid rgb(148, 148, 148);
@@ -43,6 +44,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 16px;
+    margin:auto;
+    max-width: 450px;
 }
 #AnsManual_buttons_body >* {
     text-align: center;
