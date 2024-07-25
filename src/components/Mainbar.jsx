@@ -10,6 +10,9 @@ const Mainbar = (props) => {
   const [userSolution, setUserSolution] = useState(null);
   const [correctSolutions, setCorrectSolutions] = useState(0);
   const [wrongSolutions, setWrongSolutions] = useState(0);
+  const [totalQ, setTotalQ] = useState(0);
+  const [targetDone, setTargetDone] = useState(false);
+
   const [isCorrect, setIsCorrect] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const perfectSqSet = [1, 4, 10, 32, 100, 317];
@@ -85,6 +88,17 @@ const Mainbar = (props) => {
       setsolvedBeforeTime(false)
     }
     setUserSolution(null);
+    if(props.target>0){
+      if(totalQ===1 && !targetDone){
+        setTargetDone(true)
+        return
+      }
+      if(targetDone) setTargetDone(false)
+      setTotalQ(x=>x-1)
+    }
+    else{
+      setTotalQ(x=>x+1)
+    }
 
     setShowShortResult(!showResultEachTime);
     if (props.isAnsManual && question.length > 0) {
@@ -278,12 +292,14 @@ const Mainbar = (props) => {
   }, [userSolution]);
 
   useEffect(() => {
-    setQuestion([]);
-    setCorrectSolutions(0);
-    setWrongSolutions(0);
-    setShowResult(false);
-    setShowShortResult(false);
-    setShowResultEachTime(true)
+      setQuestion([]);
+      setCorrectSolutions(0);
+      setWrongSolutions(0);
+      setShowResult(false);
+      setShowShortResult(false);
+      setShowResultEachTime(true)
+      if(props.target>0) setTotalQ(Number(props.target)+1)
+      else setTotalQ(0)
   }, [props.reset]);
 
   useEffect(()=>{
@@ -292,7 +308,24 @@ const Mainbar = (props) => {
       setShowResult(true)
     }
   },[timeUp])
+  useEffect(()=>{
+    setTargetDone(false)
+    if(props.target>0){
+      setTotalQ(Number(props.target)+1)
+    }
+  },[props.target])
 
+  useEffect(() => {
+    if(!targetDone) return
+    setQuestion([]);
+    setCorrectSolutions(0);
+    setWrongSolutions(0);
+    setShowResult(false);
+    setShowShortResult(false);
+    setShowResultEachTime(true)
+    if(props.target>0) setTotalQ(Number(props.target)+1)
+    else setTotalQ(0)
+}, [targetDone]);
   return (
     <div id="Mainbar">
       {props.timer>0 && question.length>0 && <Timer initialTime={props.timer} setTimeUp={setTimeUp} timeUp={timeUp} solvedBeforeTime={solvedBeforeTime} setsolvedBeforeTime={setsolvedBeforeTime}/>}
@@ -338,16 +371,28 @@ const Mainbar = (props) => {
         </div>
         
       </div>
-      <div id="Mainbar_head">{question.join(" ")}</div>
+      <div id="Mainbar_head" key={totalQ}>
+        <div style={{display:'flex',alignItems:'center'}}>
+            <span className={`totalQ ${totalQ===0 || (props.target>0 && totalQ===Number(props.target)+1)? 'hide':''}`}>{totalQ}</span>
+            <span>
+              {question.join(" ")}
+            </span>
+        </div>
+        </div>
       <div id="Mainbar_mid">
         {question.length === 0 ? (
-          <button
-            onClick={() => generateQuestion()}
-            id="generateBtn"
-            className="btnEffect"
-          >
-            Ask
-          </button>
+          <>
+            <div className={`targetDone ${props.target>0 && targetDone?'':'hide'}`}>
+              Completed {props.target} problems ✅
+            </div>
+            <button
+              onClick={() => generateQuestion()}
+              id="generateBtn"
+              className="btnEffect"
+              >
+              Ask
+            </button>
+            </>
         ) : showResult && !showShortResult ? (
           <Result
             showResult={showResult}

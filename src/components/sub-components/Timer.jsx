@@ -30,7 +30,7 @@ const Timer = ({ initialTime, setTimeUp, timeUp , solvedBeforeTime}) => {
     <div className='Timer'>
       {time > 0 ? (
         <>
-          <div className='timeLeft'>Time left : <span style={{fontSize:'20px',margin:'5px'}}>{time}</span> seconds</div>
+          <div className='timeLeft'>Time left : <span style={{fontSize:'18px',margin:'5px'}}>{time}</span> seconds</div>
           <div className='timerVisual' style={timerWidth} key={resetKey}></div>
         </>
       ) : (

@@ -14,6 +14,7 @@ function App() {
   const [perfect, setPerfect] = useState(true);
   const [reset,setReset] = useState(false)
   const [timer,setTimer] = useState(0)
+  const [target,setTarget] = useState(0)
 
   function handleDigitChange(digit){
     setDigitSet((xDigitSet)=>{
@@ -77,7 +78,7 @@ function App() {
 
   useEffect(()=>{
     setReset(!reset)
-  },[problemSet,digitSet,numberType,termCount,precision,perfect,isAnsManual,timer])
+  },[problemSet,digitSet,numberType,termCount,precision,perfect,isAnsManual,timer,target])
 
   return (
     <div id="app" className={darkMode ? "darkMode" : "lightMode"}>
@@ -102,6 +103,8 @@ function App() {
         setNumberType={(e)=>setNumberType(e.target.value)}
         timer={timer}
         setTimer={(e)=>setTimer(e.target.value)}
+        target={target}
+        setTarget={(e)=>setTarget(e.target.value)}
         />
       <Mainbar
         isAnsManual={isAnsManual}
@@ -113,6 +116,7 @@ function App() {
         numberType={numberType}
         reset={reset}
         timer={timer}
+        target={target}
       />
     </div>
   );

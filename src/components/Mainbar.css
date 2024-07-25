@@ -12,6 +12,32 @@
     display: grid;
     place-content: center;
     margin-bottom: 40px;
+    animation: questionPop 0.7s;
+    position: relative;
+}
+@keyframes questionPop {
+    0%{
+        transform: scaleY(0);
+        color:transparent;
+    }
+    70%{
+        transform: scaleY(1.1);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+.totalQ{
+    color:rgb(133, 133, 133);
+    border-right:2px solid rgba(133, 133, 133, 0.683);
+    border-top:2px solid rgba(133, 133, 133, 0);
+    border-bottom:2px solid rgba(133, 133, 133, 0);
+    border-radius: 100%;
+    width:20px;
+    height:20px;
+    font-size: 12px;
+    position:absolute;
+    left:-32px;
 }
 #Mainbar_mid{
     height:450px;
@@ -29,7 +55,11 @@
     cursor: pointer;
     font-size: 23px;
 }
-
+.targetDone{
+    position: absolute;
+    top:28vh;
+    font-size: 22px;
+}
 #generateBtn{
     padding:10px 5vw;
     background-color: rgb(50, 60, 67);

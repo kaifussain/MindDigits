@@ -161,6 +161,20 @@ const Sidebar = (props) => {
             <option value={180}>180 s</option>
           </select>
         </div>
+        <div className="flex innerBtns-40px-width">
+          <span style={tags}>Target</span>
+          <select onChange={props.setTarget} value={props.target}>
+            <option value={0}>None</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+            <option value={20}>20</option>
+            <option value={25}>25</option>
+            <option value={30}>30</option>
+            <option value={40}>40</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
         <div className="no-break-line innerBtns-40px-width flex">
           <span style={tags}>Dark Mode</span>
           <input
